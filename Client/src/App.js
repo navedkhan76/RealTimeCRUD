@@ -19,18 +19,21 @@ function App() {
   const send = (record) => {
     socket.emit("edit", record);
   };
-  const addRecord = (record) => {
+  const addRecord = (record,setName,setImages) => {
     socket.emit("add", record);
+    setName("")
+    setImages([])
   };
   const delRecord = (record) => {
-    console.log(record)
+  
     socket.emit("delete", record);
   };
   const dispatch = useDispatch();
   useEffect(() => {
     if (socket)
       socket.on("recieve", (data) => {
-        setUpd({ upd: true, record: { data } });
+        // console.log(data)
+        dispatch({type:"EDIT_RECORD",payload:data.data})
       });
   }, [socket]);
   useEffect(() => {
@@ -46,9 +49,8 @@ function App() {
   useEffect(() => {
     if (socket)
       socket.on("deleteRecord", (datum) => {
-        console.log(datum, "deleted");
+        setUpd({ upd: true, id:datum  });
         dispatch({type:"DELETE",payload:datum})
-       
       });
   }, [socket]);
 

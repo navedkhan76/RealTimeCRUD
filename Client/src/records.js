@@ -31,7 +31,7 @@ const Records = ({update,setUpd,send,delRecord}) => {
         <Typography>Images</Typography>
       </Grid>
         {
-          data?.records.map(({name,date,id,_id})=><Record name={name} date={date} id={id} item={_id} update={update} setUpd={setUpd} send={send} delRecord = {delRecord}/>)
+          data?.records.map((data)=><Record data={data} update={update} setUpd={setUpd} send={send} delRecord = {delRecord}/>)
         }
     </Grid>
   );

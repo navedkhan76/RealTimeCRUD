@@ -38,6 +38,7 @@ const Add = ({ dis,addRecord }) => {
           <TextField
             label="Name"
             multiline
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <IconButton color="primary" alignItems="center">
@@ -46,9 +47,7 @@ const Add = ({ dis,addRecord }) => {
             </label>
           </IconButton>
           <IconButton color="primary" alignItems="center" onClick={()=>{ 
-            dispatch(addRecord({name:name,images:images}))
-            setName("")
-            setImages([])
+            addRecord({name:name,images:images},setName,setImages)
         }}>
             <FileUploadRoundedIcon
               style={{ marginLeft: "10px" }}
